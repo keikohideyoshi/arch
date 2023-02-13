@@ -85,6 +85,21 @@ echo "Installing gaming related packages."
 
 sudo pacman -S flatpak mesa vulkan-radeon vulkan-tools lib32-vulkan-radeon wine wine-gecko wine-mono --noconfirm
 
+#If you have an nvidia card, uncomment this line and comment the above line.
+#sudo pacman -S flatpak nvidia nvidia-utils lib32-nvidia-utils vulkan-tools wine wine-gecko wine-mono --noconfirm
+
+# Check if installation was successful
+if [ $? -eq 0 ]; then
+    echo "Installation was successful!"
+else
+    echo "There was an error during installation."
+fi
+
+# Install OFFICE packages
+echo "Installing office related packages."
+
+sudo pacman -S libreoffice-fresh libreoffice-fresh-hu hunspell hunspell-hu hyphen hyphen-hu --noconfirm
+
 # Check if installation was successful
 if [ $? -eq 0 ]; then
     echo "Installation was successful!"
