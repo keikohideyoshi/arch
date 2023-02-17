@@ -71,7 +71,9 @@ fi
 # Install MISCELLANEOUS packages
 echo "Installing miscellaneous packages."
 
-sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut thunderbird --noconfirm
+sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut thunderbird flameshot --noconfirm
+
+sudo systemctl enable fstrim.timer
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
@@ -83,10 +85,7 @@ fi
 # Install GAMING packages
 echo "Installing gaming related packages."
 
-sudo pacman -S flatpak mesa vulkan-radeon vulkan-tools lib32-vulkan-radeon wine wine-gecko wine-mono --noconfirm
-
-#If you have an nvidia card, uncomment this line and comment the above line.
-#sudo pacman -S flatpak nvidia nvidia-utils lib32-nvidia-utils vulkan-tools wine wine-gecko wine-mono --noconfirm
+sudo pacman -S flatpak wine wine-gecko wine-mono lutris --noconfirm
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
@@ -99,6 +98,32 @@ fi
 echo "Installing office related packages."
 
 sudo pacman -S libreoffice-fresh libreoffice-fresh-hu hunspell hunspell-hu hyphen hyphen-hu --noconfirm
+
+yay -S ttf-ms-fonts
+
+# Check if installation was successful
+if [ $? -eq 0 ]; then
+    echo "Installation was successful!"
+else
+    echo "There was an error during installation."
+fi
+
+# Install WIFI packages
+echo "Installing office related packages."
+
+sudo pacman -S iw iwd networkmanager network-manager-applet netctl --noconfirm
+
+# Check if installation was successful
+if [ $? -eq 0 ]; then
+    echo "Installation was successful!"
+else
+    echo "There was an error during installation."
+fi
+
+# Install HOME OFFICE packages
+echo "Installing office related packages."
+
+sudo pacman -S openconnect remmina freerdp --noconfirm
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
