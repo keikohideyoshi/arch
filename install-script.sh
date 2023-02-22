@@ -125,6 +125,8 @@ echo "Installing office related packages."
 
 sudo pacman -S openconnect remmina freerdp --noconfirm
 
+yay -S vmware-horizon-client
+
 # Check if installation was successful
 if [ $? -eq 0 ]; then
     echo "Installation was successful!"
