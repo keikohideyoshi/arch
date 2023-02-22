@@ -1,0 +1,138 @@
+# Gap between borders of screen and text
+# Same thing as passing -x at command line
+gap_x 15
+gap_y 0
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+#xftfont Bitstream Vera Sans Mono:size=8
+#xftfont Terminus:size=10
+
+# Text alpha when using Xft
+xftalpha 0.8
+
+# Update interval in seconds
+update_interval 1.5
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+#own_window_colour grey
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 255
+own_window_type desktop
+own_window_class conky-semi
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Use a background image
+background yes
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 300 200
+
+# Maximum width of widget
+maximum_width 310
+
+# Draw shades?
+draw_shades yes
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+draw_graph_borders yes
+
+# Stippled borders?
+#stippled_borders 8
+
+# border margins
+#border_margin 4
+
+# border width
+#border_width 1
+
+# Default colors and also border colors
+default_color white
+color2 9fee62 # System is up to date
+color3 ff4343 # Red - Number of Updates Available
+
+default_shade_color black
+default_outline_color white
+
+# Text alignment, other possible values are commented
+alignment top_right
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# Set to yes if you want all text to be in uppercase
+uppercase no
+
+# Number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Number of net samples to average
+# Set to 1 to disable averaging
+#net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Width and thickness of ${hr 2} bar separator
+default_bar_size 150 5
+
+# Lua rounded corners requirements
+#lua_load /etc/conky-lite/draw_bg.lua
+#lua_draw_hook_pre draw_bg 
+imlib_cache_size 0
+
+# Distance of text from edge of widget
+border_outer_margin 10
+
+TEXT
+#${image /home/drszigetib/Képek/600px-Arch-linux-logo.png -p 50,50}
+###INFO###
+
+
+${alignc}${font Noto Sans:bold:size=13}${color ffe082}Arch Linux${font}
+${alignc}${font Noto Sans:bold:size=16}${color ffe082}${font}
+${color}Kernel verzió:                 ${alignr}$kernel
+
+${color}Uptime:                 ${alignr}$uptime
+
+${color}CPU: ${alignr}${exec lscpu | grep -i "model name" | cut -c 34-49}
+${color}CPU hőmérséklete: ${alignr}${hwmon 1 temp 1}°C
+${color}CPU terhelés:	${alignr}$cpu%
+${color}CPU frekvencia: ${alignr}$freq MHz
+
+#${color}GPU hőmérséklete: ${color}${alignr}  ${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t}°C
+${color}GPU hőmérséklete: ${color}${alignr} ${execi 30 sensors | grep edge | cut -c 16-19}°C
+${color}GPU hűtés: ${color}${alignr} ${execi 30 sensors | grep fan1 | cut -c 14-21}
+
+${color}Összes memória:	${color}${alignr}${memmax}
+${color}Felhasznált memória:	${color}${alignr}${mem}
+#${color}Bejelentkezve mint:	${alignr}${color}$USER
+${color slate grey}
+${color slate grey}Folyamat név                  ${alignr}CPU%
+${color slate grey}${top name 1} ${alignr}${top cpu 1}
+${color slate grey}${top name 2} ${alignr}${top cpu 2}
+${color slate grey}${top name 3} ${alignr}${top cpu 3}
+${color slate grey}${top name 4} ${alignr}${top cpu 4}
+
+#${color #1CA9EE}Frissíthető csomagok: ${color8}${alignr}${execi 300 aptitude search "~U" | wc -l}${color} darab.
+#${alignr}${execi 600 sudo pacman -Sy >/dev/null 2>&1 &&  pacman -Qu | wc -l} package(s)
+#${execi 60 grep 'upgraded' /var/log/pacman.log | tail -1 | awk  '{print$1}'} ${alignr}
+${color #1CA9EE}Elérhető frissítések: ${color5}${alignr}${execi 600 checkupdates | wc -l} ${color7}csomag
+
+
