@@ -12,8 +12,8 @@ sudo sed -i 's/#autologin-user-timeout=0/autologin-user-timeout=0/' /etc/lightdm
 sudo sed -i 's/#autologin-guest=false/autologin-guest=false/' /etc/lightdm/lightdm.conf
 
 # Create autologin group if it doesn't exist
-#getent group autologin >/dev/null || groupadd autologin
+sudo groupadd -r autologin
 
 # Add user to autologin group
-#usermod -a -G autologin drszigetib
+sudo gpasswd -a drszigetib autologin
 
