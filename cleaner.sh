@@ -11,3 +11,6 @@ sudo rm -rf /tmp/*
 
 #Clean journalctl logs
 sudo journalctl --vacuum-size=50M 
+
+#Clean orphans
+sudo pacman -R $(pacman -Qtdq)
