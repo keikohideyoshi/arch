@@ -23,7 +23,7 @@ GRUB_TERMINAL_INPUT=\"console\"
 
 # The resolution used on graphical terminal
 # note that you can use only modes which your graphic card supports via VBE
-# you can see them in real GRUB with the command `vbeinfo'
+# you can see them in real GRUB with the command \`vbeinfo\'
 #GRUB_GFXMODE=\"1680x1050x8\"
 GRUB_GFXMODE=\"1024x768,800x600\"
 
@@ -64,6 +64,6 @@ sudo cp /etc/default/grub /etc/default/grub.bak
 echo "$GRUB_CONFIG" | sudo tee /etc/default/grub > /dev/null
 
 # Update grub
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo update-grub
 
 echo "Grub configuration updated successfully."
