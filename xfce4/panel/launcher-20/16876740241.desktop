@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=AudioTube
+Comment=YouTube Music client
+Version=1.0
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=audiotube org.kde.audiotube
+Icon=org.kde.audiotube
+Type=Application
+Terminal=false
+Categories=Qt;KDE;AudioVideo;Player;
+X-Flatpak=org.kde.audiotube
+X-XFCE-Source=file:///var/lib/flatpak/exports/share/applications/org.kde.audiotube.desktop
