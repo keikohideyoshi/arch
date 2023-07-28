@@ -60,7 +60,7 @@ bindsym $mod+q kill
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+# bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -188,20 +188,15 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
-#Display Wallpaper
+
+# Display Wallpaper
 exec --no-startup-id nitrogen --restore
 
-#Autostart Picom
+# Autostart Picom
 exec_always --no-startup-id picom
 
-#Autostart Polybar
+# Autostart Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Set transparency for windows with specific title
-#for_window [title="Mozilla Firefox"] opacity 0.4
-
-# Set transparency for windows
-#for_window [class="^.*"] opacity 0.5
 
 # start Thunar
 bindsym $mod+t exec thunar
@@ -222,3 +217,6 @@ bindsym $mod+m exec ~/.config/i3/mount.sh
 # Rofi keybinds
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 bindsym $mod+w exec "rofi -show window"
+
+# Printscreen
+bindsym Print exec "flameshot gui"
