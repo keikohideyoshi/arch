@@ -4,7 +4,7 @@
 clear
 sudo pacman -Syu --noconfirm
 
-sudo pacman -S mesa vulkan-radeon vulkan-tools lib32-vulkan-radeon w--noconfirm
+sudo pacman -S mesa vulkan-radeon vulkan-tools lib32-vulkan-radeon --noconfirm
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
