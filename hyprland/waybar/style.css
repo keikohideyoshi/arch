@@ -62,6 +62,16 @@ tooltip label {
     color: black;
 }
 
+#custom-chatgpt {
+    padding-right: 20px;
+    
+}
+
+#custom-facebook {
+    padding-right: 10px;
+    
+}
+
 #battery.charging {
     color: white;
     background-color: #26A65B;

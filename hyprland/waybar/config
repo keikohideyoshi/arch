@@ -6,7 +6,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": ["hyprland/workspaces"],
-    //"modules-center":
+    "modules-center": ["custom/facebook", "custom/chatgpt"],
     "modules-right": ["custom/packages", "custom/ram", "custom/cputemp", "custom/cpufreq", "custom/cpuload", "custom/gputemp", "custom/gpufan", "custom/session", "custom/time"],
     // Modules configuration
     "hyprland/workspaces": {
@@ -170,48 +170,48 @@
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/checkupdates.sh",
 	"interval": 600,
-	"format": ": {} packages |",
+	"format": ": {} packages  ",
 	},
 
 "custom/cputemp": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/cpu_temp.sh",
 	"interval": 2,
-	"format": " : {} |",
+	"format": " : {}  ",
 	},
 	
 "custom/cpufreq": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/cpufreq.sh",
 	"interval": 2,
-	"format": ": {} |",
+	"format": ": {}  ",
 	},
 
 "custom/gputemp": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/gpu_temp.sh",
 	"interval": 2,
-	"format": " : {} |",
+	"format": " : {}  ",
 	},
 
 "custom/gpufan": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/gpu_fan.sh",
 	"interval": 2,
-	"format": " : {} |",
+	"format": " : {}  ",
 	},
 
 "custom/session": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/session.sh",
 	"interval": 2,
-	"format": ": {} |",
+	"format": ": {}  ",
 	},
 
 "custom/cpuload": {
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/cpuload.sh",
-	"format": " : {} |",
+	"format": " : {}  ",
 	},
 
 "custom/time": {
@@ -224,8 +224,19 @@
 	"tooltip": false,
 	"exec": "/home/drszigetib/Scripts/memory.sh",
 	"interval": 1,
-	"format": ": {} |",
+	"format": ": {}  ",
 	},
 
+"custom/chatgpt": {
+	"tooltip": false,
+	"on-click": "/home/drszigetib/Scripts/chatgpt.sh",
+	"format": "",	
+	},
+	
+"custom/facebook": {
+	"tooltip": false,
+	"on-click": "/home/drszigetib/Scripts/facebook.sh",
+	"format": "",	
+	},
 }
 
