@@ -71,7 +71,7 @@ fi
 # Install MISCELLANEOUS packages
 echo "Installing miscellaneous packages."
 
-sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut thunderbird flameshot sed --noconfirm
+sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut nitrogen python-pywal thunderbird flameshot sed --noconfirm
 
 sudo systemctl enable fstrim.timer
 

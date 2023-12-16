@@ -164,10 +164,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Display Wallpaper
-exec --no-startup-id nitrogen --restore
+# Not needed when using pywal
+# exec --no-startup-id nitrogen --restore
 
 # Autostart Picom
-exec_always --no-startup-id picom
+# exec_always --no-startup-id picom
 
 # Autostart Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -196,3 +197,9 @@ bindsym $mod+shift+d exec "rofi -show drun 'terminator --hold {cmd}'"
 
 # Printscreen
 bindsym Print exec "flameshot gui"
+
+# Autostart pywal
+exec wal -i /home/drszigetib/Képek
+
+# Pywal load new wallpaper shortcut
+bindsym $mod+p exec "wal -i /home/drszigetib/Képek"
