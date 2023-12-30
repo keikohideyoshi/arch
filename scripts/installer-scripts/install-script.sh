@@ -8,7 +8,7 @@ sudo pacman -Syu --noconfirm
 clear
 echo "Installing sound packages."
 
-sudo pacman -S vlc alsa-utils pavucontrol --noconfirm
+sudo pacman -S vlc pulseaudio pulseaudio-alsa --noconfirm
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
@@ -71,7 +71,7 @@ fi
 # Install MISCELLANEOUS packages
 echo "Installing miscellaneous packages."
 
-sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut nitrogen python-pywal thunderbird flameshot sed --noconfirm
+sudo pacman -S chromium leafpad ristretto galculator gnome-multi-writer obs-studio shotcut nitrogen python-pywal thunderbird flameshot sed ttf-font-awesome zip unzip p7zip gvfs udisks2 thunar thunar-volman ntfs-3g --noconfirm
 
 sudo systemctl enable fstrim.timer
 
@@ -85,7 +85,7 @@ fi
 # Install GAMING packages
 echo "Installing gaming related packages."
 
-sudo pacman -S flatpak wine wine-gecko wine-mono lutris --noconfirm
+sudo pacman -S flatpak wine wine-gecko wine-mono lutris steam --noconfirm
 
 # Check if installation was successful
 if [ $? -eq 0 ]; then
