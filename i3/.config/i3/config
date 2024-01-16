@@ -16,6 +16,9 @@ set $mod Mod4
 #font pango:monospace 8
 #title_align center
 
+#Keymap
+exec_always "setxkbmap -layout hu"
+
 # No title bar and text in the windows. Comment this and uncomment the previous section
 # if you want window title bars.
 default_border pixel
