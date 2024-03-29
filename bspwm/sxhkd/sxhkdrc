@@ -1,10 +1,18 @@
+# _______   __ _   _  _   _____________  _____ 
+#/  ___\ \ / /| | | || | / /  _  \ ___ \/  __ \
+#\ `--. \ V / | |_| || |/ /| | | | |_/ /| /  \/
+# `--. \/   \ |  _  ||    \| | | |    / | |    
+#/\__/ / /^\ \| | | || |\  \ |/ /| |\ \ | \__/\
+#\____/\/   \/\_| |_/\_| \_/___/ \_| \_| \____/
 #
-# wm independent hotkeys
-#
+#  - by Keiko Hideyoshi (2024)
+#  https://www.keikohideyoshi.xyz
+#  https://evewho.com/character/96587045
+                                              
 
 # terminal emulator
 super + Return
-	alacritty
+	terminator
 
 # Rofi launcher
 super + d
@@ -18,10 +26,6 @@ super + w
 super + Escape
 	pkill -USR1 -x sxhkd
 
-#
-# bspwm hotkeys
-#
-
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
@@ -30,21 +34,9 @@ super + alt + {q,r}
 super + q
 	bspc node -{c,k}
 
-#
-# state/flags
-#
-
 # set the window state
-#super + {t,shift + t,s,f}
-#	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-#
-# focus/swap
-#
+super + {space}
+	bspc node -t {floating}
 
 # focus the node in the given direction
 super + {Left}
@@ -61,19 +53,19 @@ super + {Right}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-#
-# move/resize
-#
+	bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
+super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
+super + alt + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Move window by direction in same workspace
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node --{focus,swap} {west,south,north,east}
 
 #Chromium
 super + b
