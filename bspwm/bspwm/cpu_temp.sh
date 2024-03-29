@@ -7,7 +7,7 @@ if ! command -v sensors &> /dev/null; then
 fi
 
 # Get CPU temperature in Celsius using sensors
-cpu_temp=$(sensors | grep 'Core 0' | cut -c 17-22)
+cpu_temp=$(sensors | grep 'Package' | cut -c 17-22)
 
 # Check if the temperature is obtained successfully
 if [[ -z "$cpu_temp" ]]; then
@@ -15,4 +15,4 @@ if [[ -z "$cpu_temp" ]]; then
     exit 1
 fi
 
-echo "${cpu_temp}"
+echo "${cpu_temp}C"
