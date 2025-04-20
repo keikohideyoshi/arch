@@ -7,7 +7,7 @@ if ! command -v sensors &> /dev/null; then
 fi
 
 # Get CPU temperature in Celsius using sensors
-cpu_temp=$(sensors | awk '/Virtual/ {getline; if ($1 == "temp1:") print substr($2, 2, 6)}')
+cpu_temp=$(sensors | grep 'Tctl' | cut -c 16-17)°C
 
 # Check if the temperature is obtained successfully
 if [[ -z "$cpu_temp" ]]; then

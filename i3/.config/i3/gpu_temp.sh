@@ -7,7 +7,7 @@ if ! command -v sensors &> /dev/null; then
 fi
 
 # Get GPU temperature in Celsius using sensors
-gpu_temp=$(nvidia-settings -q gpucoretemp | grep 'Attribute' | cut -c 43-45)
+gpu_temp=$(sensors | grep 'edge' | cut -c 16-17)
 
 # Check if the temperature is obtained successfully
 if [[ -z "$gpu_temp" ]]; then
