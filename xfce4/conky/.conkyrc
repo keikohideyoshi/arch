@@ -1,134 +1,119 @@
-# Gap between borders of screen and text
-# Same thing as passing -x at command line
-gap_x 15
-gap_y 0
+--[[
+  Conky configuration file using the modern Lua syntax.
+  This is a conversion of the user's old conkyrc.
+]]
 
-# Use Xft?
-use_xft yes
+conky.config = {
+  -- Gap between borders of screen and text
+  alignment = 'top_right',
+  gap_x = 15,
+  gap_y = 0,
 
-# Xft font when Xft is enabled
-#xftfont Bitstream Vera Sans Mono:size=8
-#xftfont Terminus:size=10
+  -- Use Xft?
+  use_xft = true,
 
-# Text alpha when using Xft
-xftalpha 0.8
+  -- Xft text alpha
+  xftalpha = 0.8,
+  
+  -- Use a custom font if you want. This example uses a default font.
+  -- font = 'Terminus:size=10',
 
-# Update interval in seconds
-update_interval 1.5
+  -- Update interval in seconds
+  update_interval = 1.5,
 
-# This is the number of times Conky will update before quitting.
-# Set to zero to run forever.
-total_run_times 0
+  -- Create own window instead of using desktop (required in nautilus)
+  own_window = true,
+  own_window_transparent = true,
+  own_window_argb_visual = true,
+  own_window_argb_value = 255,
+  own_window_type = 'desktop',
+  own_window_class = 'conky-semi',
+  own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
-# Create own window instead of using desktop (required in nautilus)
-own_window yes
-#own_window_colour grey
-own_window_transparent yes
-own_window_argb_visual yes
-own_window_argb_value 255
-own_window_type normal
-own_window_class conky-semi
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+  -- Use a background image (requires `background = true`)
+  background = true,
 
-# Use a background image
-background yes
+  -- Use double buffering (reduces flicker, may not work for everyone)
+  double_buffer = true,
 
-# Use double buffering (reduces flicker, may not work for everyone)
-double_buffer yes
+  -- Minimum size of text area
+  minimum_width = 300,
+  minimum_height = 200,
 
-# Minimum size of text area
-minimum_size 300 200
+  -- Maximum width of widget
+  maximum_width = 310,
 
-# Maximum width of widget
-maximum_width 310
+  -- Draw shades?
+  draw_shades = true,
 
-# Draw shades?
-draw_shades yes
+  -- Draw outlines?
+  draw_outline = false,
 
-# Draw outlines?
-draw_outline no
+  -- Draw borders around text
+  draw_borders = false,
+  draw_graph_borders = true,
 
-# Draw borders around text
-draw_borders no
-draw_graph_borders yes
+  -- Default colors and also border colors
+  default_color = 'white',
+  color2 = '9fee62', -- System is up to date
+  color3 = 'ff4343', -- Red - Number of Updates Available
+  default_shade_color = 'black',
+  default_outline_color = 'white',
 
-# Stippled borders?
-#stippled_borders 8
+  -- Text alignment, other possible values are commented
+  alignment = 'top_right',
 
-# border margins
-#border_margin 4
+  -- Subtract file system buffers from used memory?
+  no_buffers = true,
 
-# border width
-#border_width 1
+  -- Set to yes if you want all text to be in uppercase
+  uppercase = false,
 
-# Default colors and also border colors
-default_color white
-color2 9fee62 # System is up to date
-color3 ff4343 # Red - Number of Updates Available
+  -- Number of cpu samples to average
+  cpu_avg_samples = 2,
 
-default_shade_color black
-default_outline_color white
+  -- Force UTF8? note that UTF8 support required XFT
+  override_utf8_locale = true,
 
-# Text alignment, other possible values are commented
-alignment top_right
+  -- Width and thickness of ${hr 2} bar separator
+  default_bar_size = {150, 5},
 
-# Subtract file system buffers from used memory?
-no_buffers yes
+  -- imlib_cache_size
+  imlib_cache_size = 0,
 
-# Set to yes if you want all text to be in uppercase
-uppercase no
+  -- Distance of text from edge of widget
+  border_outer_margin = 10,
+};
 
-# Number of cpu samples to average
-# set to 1 to disable averaging
-cpu_avg_samples 2
-
-# Number of net samples to average
-# Set to 1 to disable averaging
-#net_avg_samples 2
-
-# Force UTF8? note that UTF8 support required XFT
-override_utf8_locale yes
-
-# Width and thickness of ${hr 2} bar separator
-default_bar_size 150 5
-
-# Lua rounded corners requirements
-#lua_load /etc/conky-lite/draw_bg.lua
-#lua_draw_hook_pre draw_bg 
-imlib_cache_size 0
-
-# Distance of text from edge of widget
-border_outer_margin 10
-
-TEXT
+conky.text = [[
 #${image /home/drszigetib/Letöltések/tux.jpeg -p 50,50}
 ###INFO###
 
-
-${alignc}${font Noto Sans:bold:size=13}${color ffe082}Linux Mint 21.3${font}
+${alignc}${font Noto Sans:bold:size=13}${color ffe082}Linux Mint 22.1${font}
 ${alignc}${font Noto Sans:bold:size=16}${color ffe082}${font}
-${color}Kernel verzió:                 ${alignr}$kernel
+${color}Munkamenet ideje:            ${alignr}$uptime
 
-${color}CPU: ${alignr}${exec lscpu | grep -i "model name" | cut -c 26-}
-${color}CPU hőmérséklete: ${color}${alignr} ${execi 20 sensors | grep Package | cut -c 17-23}
-${color}CPU terhelés:	${alignr}$cpu%
+${color}CPU: ${alignr}${exec lscpu | grep -i "model name" | cut -c 42-55}
+${color}CPU hőmérséklete: ${color}${alignr} ${execi 20 sensors | grep Tctl | cut -c 16-23}
+${color}CPU terhelés:    ${alignr}$cpu%
 ${color}CPU frekvencia: ${alignr}$freq MHz
 
 #${color}GPU hőmérséklete: ${color}${alignr}  ${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t}°C
-${color}GPU hőmérséklete: ${color}${alignr} ${execi 20 sensors | grep radeon -A 2 | tail -n 1 | cut -c 16-23}
+${color}GPU hőmérséklete: ${color}${alignr} ${execi 20 sensors | grep edge | cut -c 16-23}
+${color}GPU hőmérséklete: ${color}${alignr} ${execi 20 sensors | grep temp1 | tail -n 1 | cut -c 16-23}
 #${color}GPU hűtés: ${color}${alignr} ${execi 30 sensors | grep fan1 | cut -c 15-21}
 
-${color}Összes memória:	${color}${alignr}${memmax}
-${color}Felhasznált memória:	${color}${alignr}${mem}
-#${color}Bejelentkezve mint:	${alignr}${color}$USER
+${color}Összes memória: ${color}${alignr}${memmax}
+${color}Felhasznált memória: ${color}${alignr}${mem}
+#${color}Bejelentkezve mint: ${alignr}${color}$USER
 ${color slate grey}
-${color slate grey}Folyamat név                  ${alignr}CPU%
+${color slate grey}Folyamat név             ${alignr}CPU%
 ${color slate grey}${top name 1} ${alignr}${top cpu 1}
 ${color slate grey}${top name 2} ${alignr}${top cpu 2}
 ${color slate grey}${top name 3} ${alignr}${top cpu 3}
 ${color slate grey}${top name 4} ${alignr}${top cpu 4}
 
-${color #1CA9EE}Frissíthető csomagok: ${color8}${alignr}${execi 300 aptitude search "~U" | wc -l}${color} darab.
+${color #1CA9EE}Frissíthető csomagok: ${color2}${alignr}${execi 300 aptitude search "~U" | wc -l}${color} darab.
 #${alignr}${execi 600 sudo pacman -Sy >/dev/null 2>&1 &&  pacman -Qu | wc -l} package(s)
 #${execi 60 grep 'upgraded' /var/log/pacman.log | tail -1 | awk  '{print$1}'} ${alignr}
 #${color #1CA9EE}Elérhető frissítések: ${color5}${alignr}${execi 600 checkupdates | wc -l} ${color7}csomag
@@ -146,4 +131,4 @@ Páratartalom: ${execi 60 cat ~/.cache/weather.txt | grep humidity | cut -d">" -
 Szél: ${execi 60 cat ~/.cache/weather.txt | grep wind | cut -d">" -f2} m/s
 Légnyomás: ${execi 60 cat ~/.cache/weather.txt | grep pressure | cut -d">" -f2} hPa
 Frissítve: ${execi 60 cat ~/.cache/weather.txt | grep update | cut -d">" -f2}
-
+]]
