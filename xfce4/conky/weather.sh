@@ -12,7 +12,7 @@
 
 UNITY="c"
 API_KEY="24f963422bc89f37eb38b5e695f7954e"
-CITY="Bocskaikert"
+CITY="Hajdúhadház"
 COUNTRY="hu"
 
 ########################################################
