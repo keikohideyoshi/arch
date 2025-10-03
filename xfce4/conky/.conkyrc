@@ -6,7 +6,7 @@
 conky.config = {
   -- Gap between borders of screen and text
   alignment = 'top_right',
-  gap_x = 15,
+  gap_x = 50,
   gap_y = 0,
 
   -- Use Xft?
@@ -41,7 +41,7 @@ conky.config = {
   minimum_height = 200,
 
   -- Maximum width of widget
-  maximum_width = 310,
+  maximum_width = 350,
 
   -- Draw shades?
   draw_shades = true,
@@ -89,7 +89,7 @@ conky.text = [[
 #${image /home/drszigetib/Letöltések/tux.jpeg -p 50,50}
 ###INFO###
 
-${alignc}${font Noto Sans:bold:size=13}${color ffe082}Linux Mint 22.1${font}
+${alignc}${font Noto Sans:bold:size=13}${color ffe082}Linux Mint 22.2${font}
 ${alignc}${font Noto Sans:bold:size=16}${color ffe082}${font}
 ${color}Munkamenet ideje:            ${alignr}$uptime
 
@@ -111,7 +111,6 @@ ${color slate grey}Folyamat név             ${alignr}CPU%
 ${color slate grey}${top name 1} ${alignr}${top cpu 1}
 ${color slate grey}${top name 2} ${alignr}${top cpu 2}
 ${color slate grey}${top name 3} ${alignr}${top cpu 3}
-${color slate grey}${top name 4} ${alignr}${top cpu 4}
 
 ${color #1CA9EE}Frissíthető csomagok: ${color2}${alignr}${execi 300 aptitude search "~U" | wc -l}${color} darab.
 #${alignr}${execi 600 sudo pacman -Sy >/dev/null 2>&1 &&  pacman -Qu | wc -l} package(s)
@@ -131,4 +130,7 @@ Páratartalom: ${execi 60 cat ~/.cache/weather.txt | grep humidity | cut -d">" -
 Szél: ${execi 60 cat ~/.cache/weather.txt | grep wind | cut -d">" -f2} m/s
 Légnyomás: ${execi 60 cat ~/.cache/weather.txt | grep pressure | cut -d">" -f2} hPa
 Frissítve: ${execi 60 cat ~/.cache/weather.txt | grep update | cut -d">" -f2}
+
+${color ffe082}Iskolai hét:${color}${font} ${exec ~/abhet.sh}
+${color ffe082}Peti órái holnap:${color}${font}${exec ~/orarend.sh}
 ]]
