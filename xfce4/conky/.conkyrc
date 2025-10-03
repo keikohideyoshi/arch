@@ -1,8 +1,3 @@
---[[
-  Conky configuration file using the modern Lua syntax.
-  This is a conversion of the user's old conkyrc.
-]]
-
 conky.config = {
   -- Gap between borders of screen and text
   alignment = 'top_right',
@@ -42,6 +37,8 @@ conky.config = {
 
   -- Maximum width of widget
   maximum_width = 350,
+
+  wrap_text = true, 
 
   -- Draw shades?
   draw_shades = true,
@@ -126,11 +123,11 @@ $color1${execi 1800 ~/weather.sh}
 Város: ${execi 60 cat ~/.cache/weather.txt | grep city | cut -d">" -f2}
 Hőmérséklet: ${execi 60 cat ~/.cache/weather.txt | grep temp | cut -d">" -f2} °C
 Felhőzet: ${execi 60 cat ~/.cache/weather.txt | grep description | cut -d">" -f2}
-Páratartalom: ${execi 60 cat ~/.cache/weather.txt | grep humidity | cut -d">" -f2}% 
+#Páratartalom: ${execi 60 cat ~/.cache/weather.txt | grep humidity | cut -d">" -f2}% 
 Szél: ${execi 60 cat ~/.cache/weather.txt | grep wind | cut -d">" -f2} m/s
 Légnyomás: ${execi 60 cat ~/.cache/weather.txt | grep pressure | cut -d">" -f2} hPa
 Frissítve: ${execi 60 cat ~/.cache/weather.txt | grep update | cut -d">" -f2}
 
 ${color ffe082}Iskolai hét:${color}${font} ${exec ~/abhet.sh}
-${color ffe082}Peti órái holnap:${color}${font}${exec ~/orarend.sh}
+${color ffe082}Peti ${color}${font}${exec ~/orarend.sh}
 ]]
