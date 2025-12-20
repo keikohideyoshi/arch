@@ -1,12 +1,20 @@
 #!/bin/bash
 
-# Terminate already running bar instances
+sleep 2
+
+# Futó folyamatok leállítása
 killall -q polybar
 
-# Wait until the processes have been shut down
+# Várakozás a leállásig
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch Polybar, using default config location ~/.config/polybar/config
-polybar example &
+# Monitorok detektálása és Polybar indítása mindegyikre
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar --reload example &
+  done
+else
+  polybar --reload example &
+fi
 
-echo "Polybar launched..."
+echo "Polybar launched on all monitors..."

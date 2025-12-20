@@ -19,6 +19,8 @@ gaps top 3
 set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 tiling_drag modifier titlebar
+
+# Monitorok és munkaterületek elosztása
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -30,14 +32,45 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# Workspace-monitor hozzárendelés
+workspace $ws1 output DP-1
+workspace $ws2 output DP-1
+workspace $ws3 output DP-1
+workspace $ws4 output DP-1
+workspace $ws5 output DP-1
+
+workspace $ws6 output DVI-D-1-1
+workspace $ws7 output DVI-D-1-1
+workspace $ws8 output DVI-D-1-1
+workspace $ws9 output DVI-D-1-1
+workspace $ws10 output DVI-D-1-1
+
 #Autostart
 
+# --- Autostart ---
+
+# 1. Monitorok
+exec_always --no-startup-id xrandr --output DVI-D-1-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+
+# 2. Pywal - CSAK a színek generálása, háttérkép állítás NÉLKÜL (-n)
+exec_always --no-startup-id wal -n -i /home/drszigetib/Képek
+
+# 3. Billentyűzet és egyebek
 exec_always "setxkbmap -layout hu"
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
+
+# 4. Picom (Kompozitáló) - Ezt a wal UTÁN indítsuk
+exec_always --no-startup-id sh -c "killall picom; picom --backend glx -f"
+
+# 5. Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec wal -i /home/drszigetib/Képek
+
+# 6. Háttérképek (feh) - Ez legyen az utolsó, hogy biztosan ez maradjon felül
+exec_always --no-startup-id sleep 1 && feh --bg-fill /home/drszigetib/Képek/freepik__fantasy-asian-martial-artist-young-woman-with-shor__90225.png /home/drszigetib/Képek/freepik__asian-martial-artist-young-woman-short-black-hair-__80882.png
+
+# 7. Conky - A legvégén, miután a Picom és a háttérkép is stabil
+exec --no-startup-id sleep 3 && conky -c /home/drszigetib/.config/conky/conky.conf
 
 #Keybinds
 
@@ -45,7 +78,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id terminator
 bindsym $mod+q kill
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
