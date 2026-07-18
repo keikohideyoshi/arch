@@ -23,17 +23,17 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Munkaterületek hozzárendelése monitorokhoz
-workspace $ws1 output HDMI-0
-workspace $ws2 output HDMI-0
-workspace $ws3 output HDMI-0
-workspace $ws4 output HDMI-0
-workspace $ws5 output HDMI-0
+workspace $ws1 output HDMI-1
+workspace $ws2 output HDMI-1
+workspace $ws3 output HDMI-1
+workspace $ws4 output HDMI-1
+workspace $ws5 output HDMI-1
 
-workspace $ws6 output DVI-D-0
-workspace $ws7 output DVI-D-0
-workspace $ws8 output DVI-D-0
-workspace $ws9 output DVI-D-0
-workspace $ws10 output DVI-D-0
+workspace $ws6 output DVI-D-1
+workspace $ws7 output DVI-D-1
+workspace $ws8 output DVI-D-1
+workspace $ws9 output DVI-D-1
+workspace $ws10 output DVI-D-1
 
 # --- SZÍNVÁLTOZÓK ---
 set $bg-color            #2f343f
@@ -47,9 +47,9 @@ set $focus-color         #807dfe
 exec_always --no-startup-id ~/.config/i3/scripts/import-gsettings
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id ~/.screenlayout/monitor.sh
+exec_always --no-startup-id xrandr --output DVI-D-1 --auto --left-of HDMI-1 --output HDMI-1 --auto
 exec --no-startup-id ~/weather.sh
-exec --no-startup-id feh --bg-fill /home/drszigetib/Képek/UPSCfreepik__asian-martial-artist-young-woman-short-black-hair-__80882.png --bg-fill /home/drszigetib/Képek/freepik__fantasy-asian-martial-artist-young-woman-with-shor__90225_1.png
+exec --no-startup-id feh --bg-fill /home/drszigetib/Képek/UPSCfreepik__asian-martial-artist-young-woman-short-black-hair-__80882.png --bg-fill /home/drszigetib/Képek/UPSCALEDfreepik__fantasy-asian-martial-artist-young-woman-with-shor__61574.png
 exec --no-startup-id xset s 480 dpms 600 600 600
 exec --no-startup-id /usr/bin/dunst
 exec_always --no-startup-id xcompmgr
