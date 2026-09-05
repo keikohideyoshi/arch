@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# i3blocks volume block for PipeWire (using wpctl)
+
+STEP=${1:-5}
+
+# Handle scroll/middle-click (BLOCK_BUTTON: 3=Right, 4=Scroll Up, 5=Scroll Down)
+case "$BLOCK_BUTTON" in
+    3) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;                    # right click = mute/unmute
+    4) wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ "${STEP}%+" ;;      # scroll up
+    5) wpctl set-volume @DEFAULT_AUDIO_SINK@ "${STEP}%-" ;;             # scroll down
+esac
+
+# Get current volume and mute state via wpctl
+STATUS=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+
+# Volume extraction (e.g. "Volume: 0.45" -> 45)
+VOL_DEC=$(echo "$STATUS" | awk '{print $2}')
+VOL=$(awk -v v="$VOL_DEC" 'BEGIN {printf "%.0f", v * 100}')
+
+# Mute state check
+if echo "$STATUS" | grep -q "MUTED"; then
+    MUTED="yes"
+else
+    MUTED="no"
+fi
+
+# Choose symbol
+AUDIO_HIGH=''
+AUDIO_MED=''
+AUDIO_LOW=''
+AUDIO_MUTED=''
+MED_THRESH=50
+LOW_THRESH=0
+
+if [[ "$MUTED" == "no" ]]; then
+    SYMB=$AUDIO_HIGH
+    [[ $VOL -le $MED_THRESH ]] && SYMB=$AUDIO_MED
+    [[ $VOL -le $LOW_THRESH ]] && SYMB=$AUDIO_LOW
+else
+    SYMB=$AUDIO_MUTED
+fi
+
+# Single-line output for i3blocks
+if [[ "$MUTED" == "yes" ]]; then
+    echo "${SYMB} MUTE"
+else
+    echo "${SYMB} ${VOL}%"
+fi
