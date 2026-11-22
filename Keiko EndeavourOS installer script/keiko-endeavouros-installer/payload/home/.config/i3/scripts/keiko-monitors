@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Keep the original left-to-right order if those ports exist; otherwise use active outputs.
+set -u
+command -v xrandr >/dev/null || exit 0
+mapfile -t outputs < <(xrandr --query | awk '$2=="connected" {print $1}')
+if [ "${#outputs[@]}" -lt 2 ]; then exit 0; fi
+left="${outputs[0]}"; right="${outputs[1]}"
+for o in "${outputs[@]}"; do
+  [[ "$o" == "DVI-D-1" ]] && left="$o"
+  [[ "$o" == "HDMI-1" ]] && right="$o"
+done
+[[ "$left" == "$right" ]] && exit 0
+xrandr --output "$right" --auto --primary --output "$left" --auto --left-of "$right" || true

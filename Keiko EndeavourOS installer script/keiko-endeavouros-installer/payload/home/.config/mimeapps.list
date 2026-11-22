@@ -1,0 +1,10 @@
+[Added Associations]
+text/plain=org.x.editor.desktop;
+application/schema+json=org.x.editor.desktop;
+application/x-mimearchive=firefox.desktop;chromium.desktop;
+application/vnd.sqlite3=libreoffice-calc.desktop;chromium.desktop;
+application/json=org.x.editor.desktop;
+
+[Default Applications]
+application/x-mimearchive=chromium.desktop
+application/vnd.sqlite3=chromium.desktop

@@ -1,0 +1,8 @@
+* { background: #151b25; background-alt: #253342; foreground: #d8e6e8; selected: #2c6973; }
+window { background-color: @background; border: 2px; border-color: @selected; border-radius: 8px; }
+mainbox { padding: 12px; spacing: 8px; }
+inputbar { children: [prompt, entry]; spacing: 8px; }
+entry { text-color: @foreground; }
+listview { lines: 8; spacing: 4px; }
+element { padding: 6px; text-color: @foreground; }
+element selected { background-color: @selected; }
